@@ -1,15 +1,17 @@
 import CardWidget from "../CardWidget/CardWidget"
+import { NavLink, Link } from "react-router-dom"
 
 const NavBar = () => {
     return (
-        <nav>
+        <nav className="NavBar">
+            <Link to="/">
             <h2>🖥Tienda DrHard</h2>
-            <div>
-                <button>Todos Los Productos</button>
-                <button>Mouses</button>
-                <button>Teclados</button>
-                <button>Auriculares</button>
-            </div>
+            </Link>
+            <div className="Categories">
+                <NavLink to={`/category/mouse`} className={({ isActive }) => isActive ? `ActiveOption` : `Option`}>Mouses</NavLink>
+                <NavLink to={`/category/teclado`} className={({ isActive }) => isActive ? `ActiveOption` : `Option`}>Teclados</NavLink>
+                <NavLink to={`/category/auricular`} className={({ isActive }) => isActive ? `ActiveOption` : `Option`}>Auriculares</NavLink>
+             </div>
             <CardWidget />
         </nav>
     )
