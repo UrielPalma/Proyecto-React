@@ -17,7 +17,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
     }
 
 return(
-    <div className="Counter">
+    <div className="d-flex flex-column align-items-center justify-content-between">
         <div className="Controls">
             <button className="Button" onClick={decrement}>-</button>
             <h4 className="Number">{quantity}</h4>

@@ -1,28 +1,39 @@
 import "./ItemDetailContainer.css"
 import { useState, useEffect } from "react"
-import { getProductById } from "../../asyncMock"
 import ItemDetail from "../ItemDetail/ItemDetail"
 import { useParams } from "react-router-dom"
+import { collection, doc, getDoc } from "firebase/firestore"
+import { db } from "../../services/firebase"
 
 
 const ItemDetailContainer = () => {
-    const [product, setProduct] = useState (null)
+    const [producto, setProducto] = useState ({})
+    const [loader, setLoader] = useState (false)
+    const { id } = useParams()
 
-    const { itemId } = useParams()
 
-    useEffect(() => {
-        getProductById(itemId)
-        .then(response => {
-            setProduct(response)
-        })
-        .catch(error => {
-            console.error(error)
-        })
-    },[itemId])
+
+useEffect(()=>{
+    setLoader(true)
+    const collectionProd = collection(db, "productos")
+    const referenciaAlDoc = doc(collectionProd, id)
+    getDoc(referenciaAlDoc)
+    .then((res) => {
+        if (res.exists()) {
+            setProducto({ id: res.id, ...res.data()});
+        } else {
+            console.error("El Documento no existe")
+        }
+    })
+
+    .catch((error)=>console.log(error))
+    .finally(()=>setLoader(false))
+},[id])
 
 return(
-    <div className="ItemDetailContainer">
-        <ItemDetail {...product} />
+    loader ? <p>Cargando</p>
+    : <div className="ItemDetailContainer">
+        <ItemDetail {...producto} />
     </div>
 )
 }

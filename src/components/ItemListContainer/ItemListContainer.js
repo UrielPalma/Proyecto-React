@@ -1,33 +1,51 @@
-import { useState, useEffect } from "react"
-import { getProducts, getProductByCategory } from "../../asyncMock"
+import React, { useState, useEffect } from "react"
 import ItemList from "../ItemList/ItemList"
 import { useParams } from "react-router-dom"
-
+import { getDocs, collection, query, where } from "firebase/firestore"
+import { db } from "../../services/firebase"
 
 const ItemListContainer = ({ greeting }) => {
-    const [products, setProducts] = useState([])
-
+    const [productos, setProductos] = useState([])
+    const [loading, setLoading] = useState(false)
     const { categoryId } = useParams()
 
-    useEffect(() => {
-        const asyncFunc = categoryId ? getProductByCategory : getProducts
 
-        asyncFunc(categoryId)
-        .then(response => {
-            setProducts(response)
-        })
-        .catch(error => {
-            console.error(error)
-        })
+    useEffect(() => {
+        setLoading(true)
+        const collectionProductos = categoryId ? query(collection(db, "productos"), where("category", "==", categoryId)) : collection(db, "productos")
+        getDocs(collectionProductos)
+            .then((res) => {
+                const list = res.docs.map((product) => {
+                    return {
+                        id: product.id,
+                        ...product.data()
+                    }
+                })
+                setProductos(list)
+            })
+            .catch((error) => console.log(error))
+            .finally(() => setLoading(false))
+            
     }, [categoryId])
+
+
+
+
+
+
+
 
     return (
         <div>
-            <h1>{greeting}</h1>
-            <ItemList products={products}/>
+            {
+
+                loading ? <p>Cargando...</p>
+                    : <div>
+                        <h1>{greeting}<span>{categoryId && categoryId}</span></h1>
+                        <ItemList productos={productos} />
+                    </div>
+            }
         </div>
     )
-    
 }
-
 export default ItemListContainer

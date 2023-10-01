@@ -1,16 +1,16 @@
 {
-  "files": {
-    "main.css": "/Proyecto-React/static/css/main.073c9b0a.css",
-    "main.js": "/Proyecto-React/static/js/main.c1f31855.js",
-    "static/js/787.d978b421.chunk.js": "/Proyecto-React/static/js/787.d978b421.chunk.js",
-    "index.html": "/Proyecto-React/index.html",
-    "static/media/Cart.svg": "/Proyecto-React/static/media/Cart.7c2e0c9638b1b75478eda62ffc3a994a.svg",
-    "main.073c9b0a.css.map": "/Proyecto-React/static/css/main.073c9b0a.css.map",
-    "main.c1f31855.js.map": "/Proyecto-React/static/js/main.c1f31855.js.map",
-    "787.d978b421.chunk.js.map": "/Proyecto-React/static/js/787.d978b421.chunk.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.c1f31855.js"
-  ]
+    "files": {
+        "main.css": "/Proyecto-React/static/css/main.073c9b0a.css",
+        "main.js": "/Proyecto-React/static/js/main.53fe6d9a.js",
+        "static/js/787.d978b421.chunk.js": "/Proyecto-React/static/js/787.d978b421.chunk.js",
+        "index.html": "/Proyecto-React/index.html",
+        "static/media/Cart.svg": "/Proyecto-React/static/media/Cart.7c2e0c9638b1b75478eda62ffc3a994a.svg",
+        "main.073c9b0a.css.map": "/Proyecto-React/static/css/main.073c9b0a.css.map",
+        "main.53fe6d9a.js.map": "/Proyecto-React/static/js/main.53fe6d9a.js.map",
+        "787.d978b421.chunk.js.map": "/Proyecto-React/static/js/787.d978b421.chunk.js.map"
+    },
+    "entrypoints": [
+        "static/css/main.073c9b0a.css",
+        "static/js/main.53fe6d9a.js"
+    ]
 }
