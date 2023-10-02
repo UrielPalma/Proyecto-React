@@ -6,7 +6,7 @@ const CartItem = ({item}) => {
 const {removeItem}= useContext(CartContext)
     return(
 
-        <div className="d-flex justify-content-around align-items-center">
+        <div className="Container">
             <img src={item.img} alt={item.nombre}/>
             <p>{item.nombre}</p>
             <p>${item.precio}</p>

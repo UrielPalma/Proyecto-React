@@ -12,7 +12,9 @@ const ItemListContainer = ({ greeting }) => {
 
     useEffect(() => {
         setLoading(true)
-        const collectionProductos = categoryId ? query(collection(db, "productos"), where("category", "==", categoryId)) : collection(db, "productos")
+        const collectionProductos = categoryId
+            ? query(collection(db, "productos"), where("category", "==", categoryId))
+            : collection(db, "productos")
         getDocs(collectionProductos)
             .then((res) => {
                 const list = res.docs.map((product) => {
@@ -25,26 +27,22 @@ const ItemListContainer = ({ greeting }) => {
             })
             .catch((error) => console.log(error))
             .finally(() => setLoading(false))
-            
+
     }, [categoryId])
-
-
-
-
-
-
 
 
     return (
         <div>
-            {
-
-                loading ? <p>Cargando...</p>
-                    : <div>
-                        <h1>{greeting}<span>{categoryId && categoryId}</span></h1>
-                        <ItemList productos={productos} />
-                    </div>
-            }
+            {loading ? (<p>Cargando...</p>
+            ) : (
+                <div>
+                    <h1>
+                        {greeting}
+                        {categoryId && categoryId}
+                    </h1>
+                    <ItemList productos={productos} />
+                </div>
+            )}
         </div>
     )
 }
